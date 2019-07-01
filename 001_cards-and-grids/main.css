@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: 3px dashed rgb(135, 187, 39);
+    height: 100vh;
+    align-content: flex-start;
+    grid-gap: 20px;
+    grid-auto-rows: 80px;
+}
+
+div {
+    border: 3px solid hotpink;
+    text-align: center;
+    /* height: 100px; */
+}
+
+div:hover, div:active {
+    background-color: rgba(17, 0, 255, 0.5);
+    color: white;
+}
