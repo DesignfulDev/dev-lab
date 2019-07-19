@@ -8,13 +8,10 @@ const animals = [
   'orchid',
   'rat',
   'lizard',
-  'dog',
-  42,
-  true,
-  false
+  'dog'
 ];
 
-const numbers = [6, 57, 49, 22, 17, 18];
+let numbers = [49, 6, 22, 57, 17, 18];
 
 // .forEach()
 
@@ -71,3 +68,27 @@ console.log(numbers.some(even));
 
 const anyNumber = element => typeof element === 'undefined';
 console.log(numbers.some(anyNumber));
+
+// .reduce() review
+
+console.log('### REDUCE REDUX ###');
+
+let findMax = numbers.reduce((acc, val) => (val > acc ? (acc = val) : acc), 0);
+console.log(findMax);
+
+let findMin = numbers.reduce((acc, val) => (val < acc ? (acc = val) : acc));
+console.log(findMin);
+
+let numAvg = numbers.reduce((acc, val, i, arr) => {
+  acc += val;
+  return i === arr.length - 1 ? acc / arr.length : acc;
+});
+console.log(numAvg);
+
+// Simulate .filter() with .reduce()
+
+let myFilter = numbers.reduce((acc, val) => {
+  return acc > val ? (acc = val) : acc;
+}, []);
+
+console.log(myFilter);

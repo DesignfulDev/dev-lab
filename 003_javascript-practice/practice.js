@@ -55,3 +55,12 @@ searchName('amanda');
 
 clearArr();
 console.log(namesArr);
+
+let date = new Date();
+console.log(date.getTime());
+
+let date2k = new Date(2000, 1, 1);
+let diff = date.getTime() - date2k.getTime();
+diff = diff / 1000 / 60 / 60;
+
+console.log(Math.floor(diff));
