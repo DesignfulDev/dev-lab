@@ -76,12 +76,12 @@ tank(); // now it logs 'Hulk Smash'
 var agent = {
 	firstName: 'Phill',
 	lastName: 'Coulson',
-	nickname: this.firstName // Notice how 'this' is called from a property, and not a method inside of a method.
+	nickname: this.firstName // Notice how 'this' is called from a property, and not a method inside of an object.
 };
 
 console.log(`Agent's nickname is ${agent.nickname}.`); // Hulk. WHY??
 
-// Remeber de definition of 'this':
+// Remeber the definition of 'this':
 
 // 'this' is a keyword that refers to the Object invoking the method or function in which 'this' appears;
 
