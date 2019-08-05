@@ -66,7 +66,7 @@ console.log(user); // only the created object has the 'firstName' property, but 
 
 // An object prototype can have other prototypes which it inherits from. This is called 'prototype chaining'. The highest level prototype is the Object prototype, which all other objects inherit from.
 
-let arr = ['foo', 'bar', 42]; // Arrays are also objects, this means they can inherit from the Object prototype
+let arr = ['foo', 'bar', 42]; // Arrays are also objects, this means they  inherit functionality from the Object prototype
 
 console.log(arr.toString()); // 'toString' is defined in the Object prototype, therefore array objects have access to that method
 
@@ -80,16 +80,48 @@ console.log('################################');
 
 const playerProto = {
 	charClass: 'wizard',
-	charLevel: 3
+	charLevel: 3,
+	fullName: function() {
+		console.log(`${this.firstName} ${this.lastName}`);
+	}
 };
 
 // You could of course pass the prototype directly into Object.create() without the need to assign it to a variable first, but this looks cleaner and more readable.
 
-const player = Object.create(playerProto); // When calling Object.create, you are required to pass in an object prototype as argument.
+const player = Object.create(playerProto); // When calling Object.create, you are required to pass in an object prototype as argument. Trying to call Object.create without passing a prototype will throw an error. To create an object withou any prototypes, you must pass 'null' as an argument (details bellow)
 
-console.log(player); // 'player' will inherit the properties from 'playerProto', and 'playerProto' will inherit the properties from the Object prototype. This is an example of prototype chaining
+console.log(player); // 'player' will inherit the properties from 'playerProto', and 'playerProto' will inherit the properties from the Object prototype. This is an example of prototype chaining. Because of this chaining, 'player' can access all functionality in 'playerProto' AND in the Object prototype.
+
+// NULL Object
 
 // If you pass 'null' as an argument, the object created will have no prototypes, no properties, and no methods associated with it - not even the Object prototype, which is the highest level prototype.
 
 const nullObj = Object.create(null);
 console.log(nullObj);
+
+// ADDING PROTOTYPES TO EXISTING OBJECTS
+
+// Remember that arrays are Objects. I can create and add functionality that will work with all arrays in my program by adding them to the Array.prototype.
+
+Array.prototype.sayHi = function() {
+	console.log('Hello, Array');
+};
+
+arr.sayHi();
+
+let newArr = ['alpha', 'bravo', 'charlie', 'delta', 'echo'];
+
+newArr.sayHi(); // The method .sayHi() will work on every array in my program
+
+// ADDING PROPERTIES TO THE OBJECT WHEN DEFINING IT WITH Object.create()
+
+// Let's create an object that takes the 'playerProto' prototype and also two properties: 'firstName' and 'lastName'
+
+let newPlayer = Object.create(playerProto, {
+	firstName: { value: 'Mauricio' },
+	lastName: { value: 'Lacerda' }
+});
+
+// When defining the properties the object will take with Object.create() we have to specify everything about each property. One of the most important things to be defined of course is the 'value' of the property, but with Object.create() is not as straight forward as with the Object literal or the constructor. We need to tell JavaScript when we are defining the properties values by enclosing them in {}, like the example above. With Object.create() there are other things you can define to a property besides its value, but we won't cover that for now.
+
+newPlayer.fullName(); // logs 'Mauricio Lacerda'
