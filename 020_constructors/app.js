@@ -1,27 +1,10 @@
-'use strict';
-
-// var user = {
-// 	firstName: 'Mauricio',
-// 	lastName: 'Lacerda',
-// 	age: 38,
-// 	birthday: new Date('1981-02-17T10:55:00.000-03:00'),
-// 	fullName: function() {
-// 		console.log(this.firstName + ' ' + this.lastName);
-// 		return 0;
-// 	},
-// 	greet: function() {
-// 		console.log(`Hello world, I'm ${this.firstName}!`);
-// 	},
-// 	whatsThis: function() {
-// 		console.log(this);
-// 	}
-// };
+// 'use strict'; // commented out for TypeError when logging 'user2'
 
 // USING CONSTRUCTORS
 
-// A contructor is a function that instantiates (i.e. creates an instance of) an object.
+// A Contructor is a function that instantiates (i.e. creates an instance of) an object.
 
-// To define a constructor function is similar to defining a normal function, except that, by convention, you should use an uppercase letter on the function identifier.
+// Defining a Constructor function is similar to defining a regular function, except that, by convention, you should use an uppercase letter on the function identifier.
 
 function User(firstName, lastName, age) {
 	this.firstName = firstName;
@@ -29,11 +12,21 @@ function User(firstName, lastName, age) {
 	this.age = age;
 }
 
-// The keyword 'this' inside the constructor will refer to the object instantiated with the function.
+// The keyword 'this' inside the Constructor will refer to the object instantiated by the function call.
 
-// After the constructor is defined, you use the keyword 'new' to tell the JavaScript engine you are invoking the function AS a constructor.
+// After the Constructor is defined, use the keyword 'new' to tell the JavaScript engine you are invoking the function AS a Constructor.
 
-let user1 = new User('Mauricio', 'Lacerda', 38); // The keyword 'new' is important; if don't use it, the function will be executed as a normal function, and will not return an instance of the object.
+let user1 = new User('Tony', 'Stark', 51); // The keyword 'new' is important (or rather essential) when calling a Constructor;
+
+console.log(user1); // logs the Object
+
+let user2 = User('Bruce', 'Banner', 48); // If don't use the 'new' keyword, the function will be executed as a regular function, and will not return an instance of the object.
+
+console.log(user2); // logs 'undefined' (or throws TypeError in 'use strict')
+
+// NOTICE:
+
+// It is possible to define prototypes and assign them to the Constructor. That way, every object instance created by that Constructor will have its prototype associated with it.
 
 const USER_PROTO = {
 	fullName: function() {
@@ -49,7 +42,9 @@ const USER_PROTO = {
 
 User.prototype = USER_PROTO;
 
-let user2 = new User('Amanda', 'Reis', 37);
+let user3 = new User('Steve', 'Rogers', 97);
+
+console.log(user3.fullName()); // logs 'Steve Rogers'
 
 function Question(weight, correctAns, studentAns) {
 	this.weight = weight;
