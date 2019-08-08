@@ -1,5 +1,9 @@
 // 'use strict'; // commented out for TypeError when logging 'user2'
 
+// For more details on Constructors refer to:
+// https://javascript.info/constructor-new
+// https://www.youtube.com/playlist?list=PLTo9PCskHpbFc08fi-4TNIZ8qG0pO3Ph7
+
 // USING CONSTRUCTORS
 
 // FIVE IMPORTANT CONCEPTS
@@ -9,47 +13,56 @@
 // 4) The Constructor's own 'prototype' property determines the prototype of the new objects it instantiates
 // 5) The Constructor 'returns' the object it instantiates
 
-// DEFINITION:
-// A Contructor is a function that instantiates an object.
+// DEFINITION: Contructor is a function that instantiates an object, then returns it.
 
-// Defining a Constructor function is syntactically identical to defining a regular function, except that, by convention, the Constructor should take an uppercase first letter on the function identifier.
+// Defining a Constructor function is syntactically identical to defining a regular function, except that, by convention, the Constructor should take a capital first letter on its identifier.
+
+// CONSTRUCTOR VS. REGULAR FUNCTIONS: the 'new' keyword
+
+// It is only when calling the Constructor function with keyword 'new' that things will behave differently from regular functions. When a Constructor is called with 'new', three steps happen:
+
+// 1*) An empty object is created and assigned to 'this';
+
+// 2**) The function body executes, usually to modify 'this', adding properties and methods to it;
+
+// 3*) The value of 'this' is returned.
+
+// * Theses steps happen implicitly. More on that later.
+// ** This is not syntactically necessary, although it's kinda pointless to define a Constructor that does not return an object.
 
 function User(firstName, lastName, age) {
+	// this = {}; (implicitly)
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.age = age;
 	this.magicNumber = 42;
-	// you can add both properties and  methods to Constructors
 	this.sayHi = function() {
 		console.log('Hi there!');
 	};
+	// return this; (implicitly)
 }
-
-// CONSTRUCTOR VS. REGULAR FUNCTIONS
-
-// It is only when calling the Constructor function with keyword 'new' that things will behave differently from regular functions:
-
-// 1) When a Constructor function is called, it passes the object as the value of 'this'. In other words, the value of 'this' inside the Constructor will refer to the object instantiated by the function call.
-
-// 2) The Constructor function will implicitly return (no need to use the 'return' keyword) the object it instantiated. More on that later.
 
 // After the Constructor is defined, use the keyword 'new' to tell the JavaScript engine you are invoking the function AS a Constructor.
 
-let user1 = new User('Tony', 'Stark', 51); // The keyword 'new' is important (or rather essential) when calling a Constructor;
+let user1 = new User('Tony', 'Stark', 51);
 
 console.log(user1); // logs the instantiated object
 user1.sayHi();
-console.log(user1.magicNumber);
+console.log(user1.magicNumber); // 42
 
-let user2 = User('Bruce', 'Banner', 48); // If don't use the 'new' keyword, the function will be executed as a regular function, and will not return an instance of the object.
+let user2 = User('Bruce', 'Banner', 48); // If 'new' is omitted, the function will be executed as a regular function.
+
+// This means steps 1 and 3 will never run, and no object will be instanciated and assigned (or bound) to 'this', nor will it be returned.
 
 console.log(user2); // logs 'undefined' (or throws TypeError in 'use strict')
 
-// Also, since we didn't use the keyword 'new' to create 'user2', the value of 'this' inside the function was the Global Object, therefore, the variables 'firstName', 'lastName' and 'age' became global variables.
+// Also, since steps 1 and 3 never run, the value of 'this' inside the function refers to the Global Object, therefore, the properties and methods defined within the function become part of the global namespace.
 
 console.log(
 	`Global variables:\n 'firstName': ${firstName}\n 'lastName': ${lastName}\n 'age': ${age}`
 );
+
+sayHi(); // is accessible everywhere; logs 'Hi there'
 
 // CONSTRUCTOR PROTOTYPES
 
@@ -76,7 +89,7 @@ console.log(user3); // 'user3' is instantiated with prototype 'USER_PROTO' and i
 
 // CONSTRUCTORS IMPLICITLY RETURN THE OBJECT
 
-// As mentioned before, the Constructor will implicitly return the object it instantiated (no need to use the 'return' keyword).
+// As mentioned before, the Constructor will implicitly return the object it instantiated (no need of the 'return' keyword).
 
 // But what happens if you use 'return' inside the Constructor?
 
@@ -85,42 +98,43 @@ console.log(user3); // 'user3' is instantiated with prototype 'USER_PROTO' and i
 // 1) If 'return' is called with an object, the Constructor will return that object instead of 'this';
 // 2) If 'return' is called with a primitive data type, it's ignored and 'this' is returned instead
 
-function Customer(firstName, lastName, age) {
+function Wizard(firstName, lastName, age) {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.age = age;
 	this.magicNumber = 42;
-	// you can add both properties and  methods to Constructors
 	this.sayHi = function() {
 		console.log('Hi there!');
 	};
 	return {
-		// returning an object
-		firstName: 'Ancient',
-		lastName: 'One',
-		age: 1627
+		// returning an object supersedes 'this'
+		firstName: 'Doctor',
+		lastName: 'Strange',
+		age: 41
 	};
 }
 
-Customer.prototype = USER_PROTO;
-
-let cust1 = new Customer('Doctor', 'Strange', 41);
-console.log(cust1); // Ancient One will supercede Doctor Strange
+let cust1 = new Wizard('Ancient', 'One', 1627);
+console.log(cust1); // Doctor Strange supersedes the Ancient One
 
 function Hero(firstName, lastName, age) {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.age = age;
 	this.magicNumber = 42;
-	// you can add both properties and  methods to Constructors
 	this.sayHi = function() {
 		console.log('Hi there!');
 	};
-	return this.magicNumber; // will be ignored
+	return this.magicNumber; // returning a primitive will be ignored
 }
 
 let hero1 = new Hero('Clint', 'Barton', 39);
 console.log(hero1); // logs Hawkeye's object
+
+// However, if the constructor is called without 'new', there will be no implicit return of 'this', so the returned value will always be the one defined in the function (or 'undefined' if there is no return statement)
+
+let hero2 = Hero('Natasha', 'Romanov', 35);
+console.log(hero2); // logs 42
 
 // For more details on Constructors refer to:
 // https://javascript.info/constructor-new
