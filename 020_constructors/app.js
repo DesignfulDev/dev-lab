@@ -45,6 +45,7 @@ User.prototype = USER_PROTO;
 let user3 = new User('Steve', 'Rogers', 97);
 
 console.log(user3.fullName()); // logs 'Steve Rogers'
+console.log(user3); // 'user3' is instantiated with prototype 'USER_PROTO'
 
 function Question(weight, correctAns, studentAns) {
 	this.weight = weight;
