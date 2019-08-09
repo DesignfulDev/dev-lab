@@ -82,6 +82,8 @@ const USER_PROTO = {
 
 User.prototype = USER_PROTO;
 
+console.dir(User); // logs the properties of 'User' including the new functionality added by prototype 'USER_PROTO'
+
 let user3 = new User('Steve', 'Rogers', 97);
 
 console.log(user3.fullName()); // logs 'Steve Rogers'
