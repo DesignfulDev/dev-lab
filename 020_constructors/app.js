@@ -136,8 +136,9 @@ console.log(hero1); // logs Hawkeye's object
 let hero2 = Hero('Natasha', 'Romanov', 35);
 console.log(hero2); // logs 42
 
-// For more details on Constructors refer to:
+// For more details on Constructors and the 'new' operator refer to:
 // https://javascript.info/constructor-new
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
 
 // ANOTHER EXAMPLE TO SOLIDIFY THINGS
 
