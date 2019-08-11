@@ -49,7 +49,3 @@ builds/**/images/*
 # security / ssl
 *.pem
 *.xxjson
-
-# HTML & CSS base templates for JavaScript practice
-*.html
-*.css
