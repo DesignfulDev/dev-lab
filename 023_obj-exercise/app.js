@@ -64,19 +64,20 @@ class Hero {
 	}
 }
 
-// The following code segment does not work on 'use strict'
-
+// Tried to assign an object to prototype, but it doesn't work
+// And using 'strict' mode it throws a TypeError
 /*
-
 Hero.prototype = {
 	speed: 6,
 	strength: 8,
 	hitPoints: 150
 };
-
 */
+// Only adds prototype properties separately
+Hero.prototype.speed = 6;
+Hero.prototype.strength = 8;
+Hero.prototype.hitPoints = 150;
 
-Hero.prototype.speed = 6; // only adds prototype propeties individually
 let playerThree = new Hero(7, null, 220);
 
 console.log(playerThree);
