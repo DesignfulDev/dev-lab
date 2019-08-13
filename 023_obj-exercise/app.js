@@ -66,6 +66,7 @@ class Hero {
 
 // Tried to assign an object to prototype, but it doesn't work
 // And using 'strict' mode it throws a TypeError
+
 /*
 Hero.prototype = {
 	speed: 6,
@@ -73,6 +74,7 @@ Hero.prototype = {
 	hitPoints: 150
 };
 */
+
 // Only adds prototype properties separately
 Hero.prototype.speed = 6;
 Hero.prototype.strength = 8;
