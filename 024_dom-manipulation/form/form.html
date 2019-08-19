@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="form.css">
+  <title>Javascript Forms</title>
+</head>
+
+<body>
+  <h1 class="page-title">Javascript Forms</h1>
+
+  <form action="" method="post" class="registry" name='player'>
+    <fieldset class="player-field">
+
+      <legend>Player Info</legend>
+
+      <label for="first-name">First Name : </label>
+      <input type="text" id="first-name" name="first-name" placeholder="Ex: Jon" required>
+
+      <label for="last-name">Last Name: </label>
+      <input type="text" id="last-name" name="last-name" placeholder="Ex: Snow" required>
+
+      <label for="username">Username: </label>
+      <input type="text" id="username" name="username" placeholder="Ex: jon_snow" required>
+
+      <label for="birth-date">Date of Birth: </label>
+      <input type="text" id="birth-date" name="birth-date" placeholder="dd-MM-yyyy">
+
+    </fieldset>
+
+    <fieldset class="subs-field">
+
+      <legend>Subscribe:</legend>
+      <label for="email">E-mail: </label>
+      <input type="email" id="email" name="email" placeholder="Ex: jon@thewall.com">
+
+      <input type="radio" id="subscribe-yes" name="subscribe" value="yes" checked>
+      <label for="subscribe-yes">Yes, please! =)</label>
+
+      <input type="radio" id="subscribe-no" name="subscribe" value="no">
+      <label for="subscribe-no">No, thanks... =(</label>
+
+      <label for="where-from">Where did you hemauricelacerda@gmail.comar about us?</label>
+      <select name="whereFrom" id="where-from">
+        <option value="">--Please choose an option--</option>
+        <option value="search">Search engines</option>
+        <option value="dndbeyond">D&D Beyond</option>
+        <option value="nerds">Nerd friends</option>
+        <option value="other">Other</option>
+      </select>
+
+    </fieldset>
+    <input type="submit" value="Send" class="send-btn">
+
+  </form>
+  <div class="big-square"><span class="square-text">Square</span></div>
+
+  <script src="form.js"></script>
+</body>
+
+</html>
