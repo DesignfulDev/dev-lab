@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // CHANGING THE DOM IN TWO STEPS
 
@@ -7,11 +7,11 @@
 
 // METHODS FOR SELECTING ELEMENTS
 
-// 1) Selecting with the dot syntax
-// 2) Selecting by specifying an ID
-// 3) Selecting by specifying an TAG
-// 4) Selecting by specifying an CLASS
-// 5) Selecting using CSS selectors
+// 1) Selecting elements with the dot syntax
+// 2) Selecting elements by specifying an ID
+// 3) Selecting elements by specifying an TAG
+// 4) Selecting elements by specifying an CLASS
+// 5) Selecting elements using CSS selectors
 // 6) Selecting form elements by name attribute
 
 // Selecting with the dot syntax
@@ -33,11 +33,58 @@ let toggle1 = setInterval(() => {
 	console.log(i);
 	toggleImg(docImgs, 0);
 	i > 5 ? clearInterval(toggle1) : i++;
-}, 1000);
+}, 500);
 
 let j = 0;
 let toggle2 = setInterval(() => {
-	console.log(j);
 	toggleImg(docImgs, 1);
 	j > 5 ? clearInterval(toggle2) : j++;
-}, 1000);
+}, 500);
+
+// Selecting elements by specifying an ID
+
+let sq07 = document.getElementById('sq07');
+
+let k = 0;
+let toggleColor = setInterval(() => {
+	sq07.style.backgroundColor === 'darkred'
+		? (sq07.style.backgroundColor = 'darkblue')
+		: (sq07.style.backgroundColor = 'darkred');
+	k > 10 ? clearInterval(toggleColor) : k++;
+}, 250);
+
+// Selecting elements by specifying an TAG
+
+let divs = document.getElementsByTagName('div');
+
+setTimeout(() => {
+	for (let d = 0; d < divs.length; d++) {
+		divs[d].style.border = '2px solid white';
+	}
+}, 3000);
+
+// Selecting elements by specifying an CLASS
+
+let squares = document.getElementsByClassName('square');
+
+setTimeout(() => {
+	for (let s = 0; s < squares.length; s++) {
+		squares[s].innerHTML = `sq${s}`;
+	}
+}, 4000);
+
+// Selecting elements using CSS selectors
+
+let pieces = document.querySelectorAll('div:nth-last-of-type(3n+1)'); // returns an array of elements
+
+setTimeout(() => {
+	for (let p = 0; p < pieces.length; p++) {
+		pieces[p].style.backgroundColor = 'cornflowerblue';
+	}
+}, 1500);
+
+let onePiece = document.querySelector('div:nth-child(2)'); // returns a single element
+
+setTimeout(() => {
+	onePiece.style.backgroundColor = 'darkgreen';
+}, 2400);

@@ -2,20 +2,18 @@
 	box-sizing: border-box;
 }
 
+.registry {
+	width: 40vw;
+	margin: 0 auto;
+	border: 2px solid salmon;
+}
+
 fieldset {
 	margin: 40px 0;
-	width: 100%;
 }
 
 .page-title {
 	text-align: center;
-}
-
-.registry {
-	display: flex;
-	flex-wrap: row wrap;
-	width: 50vw;
-	margin: 0 auto;
 }
 
 input[type='text'],
@@ -27,18 +25,4 @@ label[for='where-from'] {
 
 .send-btn {
 	padding: 5px 30px;
-}
-
-.big-square {
-	font-size: 4em;
-	border: 2px solid hotpink;
-	height: 200px;
-	width: 50vw;
-	/* margin: auto 0; */
-	margin: 0 auto;
-}
-
-.square-text {
-	display: block;
-	background-color: cadetblue;
 }
