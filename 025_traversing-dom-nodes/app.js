@@ -112,3 +112,17 @@ console.log(sq05.firstChild.nodeValue); // logs 'HEY!'
 // You can also change an attribute
 
 sq05.attributes[0].nodeValue = 'square blueSquare'; // adds the blueSquare class to the 'sq05' div
+
+let squares = document.querySelector('.squares:nth-child(3)');
+
+let sqList = squares.childNodes;
+
+// Change background color of squares after 2 seconds
+
+setTimeout(() => {
+	for (let i = 0; i < sqList.length; i++) {
+		if (sqList[i].nodeType === 1) {
+			sqList[i].style.backgroundColor = 'olive';
+		}
+	}
+}, 2500);
