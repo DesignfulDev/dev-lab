@@ -2,6 +2,8 @@
 
 // MODIFYING ATTRIBUTES ON HTML ELEMENTS
 
+// This methods are particularly effective on HTML attibutes that are reserved words in JavaScript (ex: class, for) because they will avoid errors
+
 /*
 
 .getAttribute('attribute');
